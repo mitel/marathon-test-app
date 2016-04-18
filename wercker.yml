@@ -60,7 +60,7 @@ deploy:
     - internal/docker-push:
         username: $USERNAME
         password: $PASSWORD
-        repository: turing/bar
+        repository: mitelone/marathon-test-app
         tag: $WERCKER_GIT_COMMIT
         entrypoint: node server/server.js
         ports: "8080"
