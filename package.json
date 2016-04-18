@@ -1,0 +1,51 @@
+{
+  "name": "nodejs-docker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-babel": "babel src -d lib",
+    
+    "build-server": "webpack --verbose --colors --display-error-details --config webpack.config-server.js",
+    "build": "rm -rf dist; npm run build-server; cp -r src/static dist",
+    "start": "npm run build; cd dist; node server/server.js",
+
+    "prepare-cf": "sh ./runtime/cf/prepare-cf.sh",
+    "cf": "npm run build; npm run prepare-cf",
+
+    "docker": "npm run build; sh ./runtime/docker-local/prepare-docker.sh",
+    "start-docker": "npm run docker; docker run -d --name=\"devops-day\" -p 8080:8080 webapp",
+    
+    "clean": "rm -rf dist; docker stop devops-day; docker rm devops-day; docker rmi webapp"
+  },
+  "author": "mitel",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.7.5",
+    "babel-core": "^6.7.6",
+    "babel-eslint": "^6.0.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "eslint": "^2.7.0",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-babel": "^3.2.0",
+    "eslint-plugin-react": "^4.3.0",
+    "file-loader": "^0.8.5",
+    "imports-loader": "^0.6.5",
+    "json-loader": "^0.5.4",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "good": "^6.6.0",
+    "good-console": "^5.3.1",
+    "good-file": "^5.1.2",
+    "hapi": "^13.3.0",
+    "inert": "^3.2.0",
+    "tv": "^5.0.2",
+    "vision": "^4.1.0",
+    "wreck": "^7.1.0"
+  }
+}

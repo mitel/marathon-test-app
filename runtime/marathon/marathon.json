@@ -1,0 +1,28 @@
+{
+    "id": "test-webapp",
+    "cmd": "node server.js",
+    "instances": 1,
+    "cpus": 0.5,
+    "mem": 32,
+    "container": {
+    	"type": "DOCKER",
+    	"docker": {
+      		"image": "python:3",
+      		"network": "BRIDGE",
+      		"portMappings": [
+       		 	{ "containerPort": 8080, "hostPort": 31000, "servicePort": 31000, "protocol": "tcp" }
+      		]
+     	}
+    },
+    "healthChecks": [{
+      "protocol": "HTTP",
+      "portIndex": 0,
+      "path": "/",
+      "gracePeriodSeconds": 5,
+      "intervalSeconds": 20,
+      "maxConsecutiveFailures": 3
+    }],
+    "labels": {
+      "consul": "webapp"
+    }
+}
