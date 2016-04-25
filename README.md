@@ -14,7 +14,7 @@ Building for CF: `npm run cf`
 
 Change dir into dist/cf and push it to the cloud with `cf push`
 
-Open a browser (better be Chrome or Safari) to the web address with the suffix /devops
+Open a browser to the web address with the suffix `/devops`
 eg: `http://devopsday.cfapps.io/devops/`
 
 ## Build & Deploy with Mesosphere DCOS
