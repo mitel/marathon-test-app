@@ -1,28 +1,31 @@
 {
-    "id": "test-webapp",
-    "cmd": "node server.js",
-    "instances": 1,
-    "cpus": 0.5,
-    "mem": 32,
-    "container": {
-    	"type": "DOCKER",
-    	"docker": {
-      		"image": "python:3",
-      		"network": "BRIDGE",
-      		"portMappings": [
-       		 	{ "containerPort": 8080, "hostPort": 31000, "servicePort": 31000, "protocol": "tcp" }
-      		]
-     	}
-    },
-    "healthChecks": [{
-      "protocol": "HTTP",
-      "portIndex": 0,
-      "path": "/",
-      "gracePeriodSeconds": 5,
-      "intervalSeconds": 20,
-      "maxConsecutiveFailures": 3
-    }],
-    "labels": {
-      "consul": "webapp"
+  "id": "test1",
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "mitelone/marathon-test-app:6acbda78ab64eccf6126c087641ef0c797dc7aec",
+      "network": "BRIDGE",
+      "portMappings": [
+        { "hostPort": 0, "containerPort": 8080, "servicePort": 10099, "protocol": "tcp" }
+      ],
+      "forcePullImage":false
     }
+  },
+  "instances": 1,
+  "cpus": 0.3,
+  "mem": 128,
+  "healthChecks": [{
+      "protocol": "HTTP",
+      "path": "/",
+      "portIndex": 0,
+      "timeoutSeconds": 10,
+      "gracePeriodSeconds": 10,
+      "intervalSeconds": 2,
+      "maxConsecutiveFailures": 10
+  }],
+  "labels":{
+    "HAPROXY_GROUP":"external",
+    "HAPROXY_0_VHOST":"dcos-PublicSlaveLo-4LNYNZ6DZJ6-1543411629.us-east-1.elb.amazonaws.com",
+    "HAPROXY_0_PATH": "/test1"
+  }
 }
