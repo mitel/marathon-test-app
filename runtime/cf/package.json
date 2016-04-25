@@ -1,0 +1,11 @@
+{
+  "name": "devops-day-2016",
+  "version": "0.0.1",
+  "author": "mitel",
+  "dependencies": {
+  },
+  "engines": {
+    "node": "5.10.0",
+    "npm": "3.8.3"
+  }
+}

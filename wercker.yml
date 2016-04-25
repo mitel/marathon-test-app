@@ -57,6 +57,8 @@ deploy:
     id: mhart/alpine-node:base-5.10.1
     cmd: /bin/sh
   steps:
+    # creates and pushes the docker image to docker hub
+    # /pipeline/source is the path where $WERCKER_OUTPUT_DIR pointed in the build part
     - internal/docker-push:
         username: $USERNAME
         password: $PASSWORD

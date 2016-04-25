@@ -4,7 +4,7 @@ module.exports = [
 
     {
         method: 'GET',
-        path: '/test',
+        path: '/devops/test',
         handler: function (request, reply) {
             var response = reply('Hello EMC Day!');
             console.log("GET request to /test");
@@ -14,7 +14,7 @@ module.exports = [
 
     {
         method: 'GET',
-        path: '/{param*}',
+        path: '/devops/{param*}',
         handler: {
             directory: {
                 path: 'static',  // make sure you run <node> from the <server> folder
