@@ -3,7 +3,7 @@
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "mitelone/marathon-test-app:6acbda78ab64eccf6126c087641ef0c797dc7aec",
+      "image": "mitelone/marathon-test-app:23cc417cf08c5b4b8515bbca9d47dfaa4bcfd367",
       "network": "BRIDGE",
       "portMappings": [
         { "hostPort": 0, "containerPort": 8080, "servicePort": 10099, "protocol": "tcp" }
@@ -16,7 +16,7 @@
   "mem": 128,
   "healthChecks": [{
       "protocol": "HTTP",
-      "path": "/",
+      "path": "/devops",
       "portIndex": 0,
       "timeoutSeconds": 10,
       "gracePeriodSeconds": 10,
@@ -26,6 +26,6 @@
   "labels":{
     "HAPROXY_GROUP":"external",
     "HAPROXY_0_VHOST":"dcos-PublicSlaveLo-4LNYNZ6DZJ6-1543411629.us-east-1.elb.amazonaws.com",
-    "HAPROXY_0_PATH": "/test1"
+    "HAPROXY_0_PATH": "/devops"
   }
 }
