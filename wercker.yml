@@ -1,6 +1,8 @@
 # box: alpine linux with node, npm, python
 # alpine does not have bash installed, hence the cmd setting
-
+box: 
+  id: mitelone/alpine-node-dev:latest
+  cmd: /bin/sh
 
 # ########
 # This is the build pipeline. Pipelines are the core of wercker
@@ -52,36 +54,52 @@ build:
           cp -r src/static "$WERCKER_OUTPUT_DIR";
           cp runtime/marathon/marathon.json "$WERCKER_OUTPUT_DIR";
 
+# deploy:
+#   box: 
+#     id: mhart/alpine-node:base-5.10.1
+#     cmd: /bin/sh
+#   steps:
+#     # creates and pushes the docker image to docker hub
+#     # /pipeline/source is the path where $WERCKER_OUTPUT_DIR pointed in the build part
+#     - internal/docker-push:
+#         username: $USERNAME
+#         password: $PASSWORD
+#         repository: mitelone/marathon-test-app
+#         tag: $WERCKER_GIT_COMMIT
+#         working-dir: /pipeline/source
+#         entrypoint: node server/server.js
+#         ports: "8080"
+
 deploy:
   # uses a different docker image without npm installed
   dockerhub:
-    box: 
-      id: mhart/alpine-node:base-5.10.1
-      cmd: /bin/sh
-    steps:
-      # creates and pushes the docker image to docker hub
-      # /pipeline/source is the path where $WERCKER_OUTPUT_DIR pointed in the build part
-      - internal/docker-push:
-          username: $USERNAME
-          password: $PASSWORD
-          repository: mitelone/marathon-test-app
-          tag: $WERCKER_GIT_COMMIT
-          working-dir: /pipeline/source
-          entrypoint: node server/server.js
-          ports: "8080"
-  # marathon:
+  # box: 
+  #   id: mhart/alpine-node:base-5.10.1
+  #   cmd: /bin/sh
+  #steps:
+    # creates and pushes the docker image to docker hub
+    # /pipeline/source is the path where $WERCKER_OUTPUT_DIR pointed in the build part
+    - internal/docker-push:
+        username: $USERNAME
+        password: $PASSWORD
+        repository: mitelone/marathon-test-app
+        tag: $WERCKER_GIT_COMMIT
+        working-dir: /pipeline/source
+        entrypoint: node server/server.js
+        ports: "8080"
+  marathon:
   # box: 
   #   id: mitelone/alpine-node-dev:latest
   #   cmd: /bin/sh
   # steps:
-  #   - script:
-  #       name: generate json
-  #       code: chmod +x template.sh && ./template.sh
-  #   - wercker/marathon-deploy:
-  #       marathon-url: $MARATHON_ENDPOINT
-  #       app-name: $APP_NAME
-  #       app-json-file: /pipeline/source/marathon.json
-  #       instances: "$INSTANCES"
+    - script:
+        name: generate json
+        code: chmod +x template.sh && ./template.sh
+    - wercker/marathon-deploy:
+        marathon-url: $MARATHON_ENDPOINT
+        app-name: $APP_NAME
+        app-json-file: /pipeline/source/marathon.json
+        instances: "$INSTANCES"
 
 dev:
   box: 
