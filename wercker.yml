@@ -50,9 +50,9 @@ build:
     - script:
         name: copy webpack build and static files to $WERCKER_OUTPUT_DIR...
         code: | 
-          cp -r dist/server "$WERCKER_OUTPUT_DIR";
-          cp -r src/static "$WERCKER_OUTPUT_DIR";
-          cp runtime/marathon/template.sh "$WERCKER_OUTPUT_DIR";
+          cp -r dist/server $WERCKER_OUTPUT_DIR;
+          cp -r src/static $WERCKER_OUTPUT_DIR;
+          cp runtime/marathon/template.sh $WERCKER_OUTPUT_DIR;
 
 # deploy:
 #   box: 
@@ -94,7 +94,10 @@ deploy:
   # steps:
     - script:
         name: generate json
-        code: chmod +x /pipeline/source/template.sh && /pipeline/source/template.sh
+        code: |
+          pwd;
+          ls -a;
+          chmod +x /pipeline/source/template.sh && /pipeline/source/template.sh;
     - wercker/marathon-deploy:
         marathon-url: $MARATHON_ENDPOINT
         app-name: $APP_NAME
