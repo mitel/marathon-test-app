@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 cat > test1.json <<EOF
 {
   "id": "/test1",
