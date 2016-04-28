@@ -95,8 +95,8 @@ deploy:
     - script:
         name: generate json
         code: |
-          cat template.sh 
-          chmod +x template.sh && ./template.sh
+          chmod +x template.sh
+          ./template.sh
     - wercker/marathon-deploy:
         marathon-url: $MARATHON_ENDPOINT
         app-name: $APP_NAME
