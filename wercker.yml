@@ -52,7 +52,7 @@ build:
         code: | 
           cp -r dist/server "$WERCKER_OUTPUT_DIR";
           cp -r src/static "$WERCKER_OUTPUT_DIR";
-          cp runtime/marathon/marathon.json "$WERCKER_OUTPUT_DIR";
+          cp runtime/marathon/template.sh "$WERCKER_OUTPUT_DIR";
 
 # deploy:
 #   box: 
@@ -98,7 +98,7 @@ deploy:
     - wercker/marathon-deploy:
         marathon-url: $MARATHON_ENDPOINT
         app-name: $APP_NAME
-        app-json-file: /pipeline/source/marathon.json
+        app-json-file: /pipeline/source/test1.json
         instances: "$INSTANCES"
 
 dev:
