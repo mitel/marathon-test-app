@@ -54,10 +54,13 @@ build:
 
 deploy:
   # uses a different docker image without npm installed
-  docker-hub:
-    box: 
-      id: mhart/alpine-node:base-5.10.1
+  box: 
+      id: mitelone/alpine-node-dev:latest
       cmd: /bin/sh
+  docker-hub:
+    # box: 
+    #   id: mhart/alpine-node:base-5.10.1
+    #   cmd: /bin/sh
     steps:
       # creates and pushes the docker image to docker hub
       # /pipeline/source is the path where $WERCKER_OUTPUT_DIR pointed in the build part
@@ -70,9 +73,9 @@ deploy:
           entrypoint: node server/server.js
           ports: "8080"
   marathon:
-    box: 
-      id: mitelone/alpine-node-dev:latest
-      cmd: /bin/sh
+    # box: 
+    #   id: mitelone/alpine-node-dev:latest
+    #   cmd: /bin/sh
     steps:
       - script:
           name: generate json
