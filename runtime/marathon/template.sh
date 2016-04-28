@@ -5,7 +5,7 @@ cat > test1.json <<EOF
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "$APP_IMAGE",
+      "image": "mitelone/marathon-test-app:$WERCKER_GIT_COMMIT",
       "network": "BRIDGE",
       "network": "BRIDGE",
       "portMappings": [
