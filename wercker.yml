@@ -54,37 +54,34 @@ build:
 
 deploy:
   # uses a different docker image without npm installed
-  box: 
-      id: mitelone/alpine-node-dev:latest
-      cmd: /bin/sh
   docker-hub:
-    # box: 
-    #   id: mhart/alpine-node:base-5.10.1
-    #   cmd: /bin/sh
-    steps:
-      # creates and pushes the docker image to docker hub
-      # /pipeline/source is the path where $WERCKER_OUTPUT_DIR pointed in the build part
-      - internal/docker-push:
-          username: $USERNAME
-          password: $PASSWORD
-          repository: mitelone/marathon-test-app
-          tag: $WERCKER_GIT_COMMIT
-          working-dir: /pipeline/source
-          entrypoint: node server/server.js
-          ports: "8080"
+  box: 
+    id: mhart/alpine-node:base-5.10.1
+    cmd: /bin/sh
+  steps:
+    # creates and pushes the docker image to docker hub
+    # /pipeline/source is the path where $WERCKER_OUTPUT_DIR pointed in the build part
+    - internal/docker-push:
+        username: $USERNAME
+        password: $PASSWORD
+        repository: mitelone/marathon-test-app
+        tag: $WERCKER_GIT_COMMIT
+        working-dir: /pipeline/source
+        entrypoint: node server/server.js
+        ports: "8080"
   marathon:
-    # box: 
-    #   id: mitelone/alpine-node-dev:latest
-    #   cmd: /bin/sh
-    steps:
-      - script:
-          name: generate json
-          code: chmod +x template.sh && ./template.sh
-      - wercker/marathon-deploy:
-          marathon-url: $MARATHON_ENDPOINT
-          app-name: $APP_NAME
-          app-json-file: /pipeline/source/marathon.json
-          instances: "$INSTANCES"
+  box: 
+    id: mitelone/alpine-node-dev:latest
+    cmd: /bin/sh
+  steps:
+    - script:
+        name: generate json
+        code: chmod +x template.sh && ./template.sh
+    - wercker/marathon-deploy:
+        marathon-url: $MARATHON_ENDPOINT
+        app-name: $APP_NAME
+        app-json-file: /pipeline/source/marathon.json
+        instances: "$INSTANCES"
 
 dev:
   box: 
