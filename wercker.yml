@@ -95,7 +95,7 @@ deploy:
     - script:
         name: generate json
         code: chmod +x template.sh && ./template.sh
-    - wercker/marathon-deploy:
+    - mitelone/marathon-deploy:
         marathon-url: $MARATHON_ENDPOINT
         app-name: $APP_NAME
         app-json-file: /pipeline/source/test1.json
