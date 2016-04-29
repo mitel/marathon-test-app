@@ -95,7 +95,7 @@ deploy:
     - script:
         name: generate json
         code: chmod +x template.sh && ./template.sh
-    - mitelone/marathon-deploy@0.1.8:
+    - mitelone/marathon-deploy@0.1.9:
         auth-token: $AUTH_TOKEN
         marathon-url: $MARATHON_ENDPOINT
         app-name: $APP_NAME
