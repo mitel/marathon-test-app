@@ -27,7 +27,7 @@ cat > test1.json <<EOF
   }],
   "labels":{
     "HAPROXY_GROUP":"external",
-    "HAPROXY_0_VHOST":"dcos-PublicSlaveLo-1U9GDZ8EFGHCD-1052101230.us-east-1.elb.amazonaws.com",
+    "HAPROXY_0_VHOST":"dcos-no-a-PublicSl-1AV7QLK7UU4GA-393133415.us-east-1.elb.amazonaws.com",
     "HAPROXY_0_PATH": "/devops"
   }
 }
