@@ -72,10 +72,10 @@ build:
 
 deploy:
   # uses a different docker image without npm installed
+  box: 
+    id: mhart/alpine-node:base-5.10.1
+    cmd: /bin/sh
   dockerhub:
-    - box: 
-        id: mhart/alpine-node:base-5.10.1
-        cmd: /bin/sh
     # steps:
     # creates and pushes the docker image to docker hub
     # /pipeline/source is the path where $WERCKER_OUTPUT_DIR pointed in the build part
