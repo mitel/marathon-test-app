@@ -127,11 +127,13 @@ dev:
         code: | 
           cp -r dist/server "$WERCKER_OUTPUT_DIR";
           cp -r src/static "$WERCKER_OUTPUT_DIR";
+          cp runtime/marathon/template.sh $WERCKER_OUTPUT_DIR;
     - internal/shell:
       cmd: /bin/sh  #defaults to /bin/bash
       code: |
         # some code to automatically run in your shell session
         # before you start interacting
         cd $WERCKER_OUTPUT_DIR
+        cat template.sh
 
 

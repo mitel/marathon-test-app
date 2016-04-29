@@ -1,5 +1,5 @@
 #!/bin/sh
-cat - >test1.json <<EOF
+cat >test1.json <<STOP
 {
   "id": "/test1",
   "container": {
@@ -31,4 +31,4 @@ cat - >test1.json <<EOF
     "HAPROXY_0_PATH": "/devops"
   }
 }
-EOF
+STOP
