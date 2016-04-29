@@ -79,14 +79,14 @@ deploy:
     steps:
     # creates and pushes the docker image to docker hub
     # /pipeline/source is the path where $WERCKER_OUTPUT_DIR pointed in the build part
-      - internal/docker-push:
-          username: $USERNAME
-          password: $PASSWORD
-          repository: mitelone/marathon-test-app
-          tag: $WERCKER_GIT_COMMIT
-          working-dir: /pipeline/source
-          entrypoint: node server/server.js
-          ports: "8080"
+    - internal/docker-push:
+        username: $USERNAME
+        password: $PASSWORD
+        repository: mitelone/marathon-test-app
+        tag: $WERCKER_GIT_COMMIT
+        working-dir: /pipeline/source
+        entrypoint: node server/server.js
+        ports: "8080"
   marathon:
   # box: 
   #   id: mitelone/alpine-node-dev:latest
