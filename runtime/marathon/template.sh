@@ -27,7 +27,7 @@ cat >test1.json <<EOF
   }],
   "labels":{
     "HAPROXY_GROUP":"external",
-    "HAPROXY_0_VHOST":$PUBLIC_SLAVE_DNS,
+    "HAPROXY_0_VHOST":"$PUBLIC_SLAVE_DNS",
     "HAPROXY_0_PATH": "/devops"
   }
 }
