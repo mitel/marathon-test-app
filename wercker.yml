@@ -94,10 +94,7 @@ deploy:
   # steps:
     - script:
         name: generate json
-        code: |
-          cat template.sh
-          chmod +x template.sh && ./template.sh
-          cat test1.json
+        code: chmod +x template.sh && ./template.sh
     - mitelone/marathon-deploy:
         marathon-url: $MARATHON_ENDPOINT
         app-name: $APP_NAME
