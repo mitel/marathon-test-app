@@ -1,8 +1,8 @@
 # box: alpine linux with node, npm, python
 # alpine does not have bash installed, hence the cmd setting
-box: 
-  id: mitelone/alpine-node-dev:latest
-  cmd: /bin/sh
+# box: 
+#   id: mitelone/alpine-node-dev:latest
+#   cmd: /bin/sh
 
 # ########
 # This is the build pipeline. Pipelines are the core of wercker
@@ -72,11 +72,10 @@ build:
 
 deploy:
   # uses a different docker image without npm installed
+  box: 
+    id: mhart/alpine-node:base-5.10.1
+    cmd: /bin/sh
   dockerhub:
-  # box: 
-  #   id: mhart/alpine-node:base-5.10.1
-  #   cmd: /bin/sh
-  #steps:
     # creates and pushes the docker image to docker hub
     # /pipeline/source is the path where $WERCKER_OUTPUT_DIR pointed in the build part
     - internal/docker-push:
@@ -88,10 +87,9 @@ deploy:
         entrypoint: node server/server.js
         ports: "8080"
   marathon:
-  # box: 
-  #   id: mitelone/alpine-node-dev:latest
-  #   cmd: /bin/sh
-  # steps:
+    - script:
+        name: install curl
+        code: apk add --no-cache curl
     - script:
         name: generate json
         code: chmod +x template.sh && ./template.sh
