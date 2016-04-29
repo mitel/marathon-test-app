@@ -1,5 +1,5 @@
 #!/bin/sh
-cat > test1.json <<EOF
+cat <<EOF > test1.json
 {
   "id": "/test1",
   "container": {
