@@ -95,6 +95,7 @@ deploy:
     - script:
         name: generate json
         code: |
+          cat template.sh
           chmod +x template.sh && ./template.sh
           cat test1.json
     - mitelone/marathon-deploy:
