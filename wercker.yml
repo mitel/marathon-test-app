@@ -88,9 +88,9 @@ deploy:
         entrypoint: node server/server.js
         ports: "8080"
   marathon:
-    - script:
-        name: install curl
-        code: apk add --no-cache curl
+    # - script:
+    #     name: install curl
+    #     code: apk add --no-cache curl
     - script:
         name: generate json
         code: chmod +x template.sh && ./template.sh
