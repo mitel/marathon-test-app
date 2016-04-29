@@ -1,14 +1,16 @@
+#!/bin/sh
+cat >test1.json <<EOF
 {
-  "id": "test1",
+  "id": "/test1",
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "mitelone/marathon-test-app:5764b4f86c10a8fdda81716bd269f2f778521849",
+      "image": "mitelone/marathon-test-app:$WERCKER_GIT_COMMIT",
+      "network": "BRIDGE",
       "network": "BRIDGE",
       "portMappings": [
         { "hostPort": 0, "containerPort": 8080, "servicePort": 10099, "protocol": "tcp" }
-      ],
-      "forcePullImage":false
+      ]
     }
   },
   "instances": 1,
@@ -25,7 +27,8 @@
   }],
   "labels":{
     "HAPROXY_GROUP":"external",
-    "HAPROXY_0_VHOST":"dcos-no-a-PublicSl-1AV7QLK7UU4GA-393133415.us-east-1.elb.amazonaws.com",
+    "HAPROXY_0_VHOST":"$PUBLIC_SLAVE_DNS",
     "HAPROXY_0_PATH": "/devops"
   }
 }
+EOF
