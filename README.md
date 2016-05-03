@@ -1,6 +1,6 @@
 # marathon app test
 A simple node.js app serving some static content (from `https://github.com/emccode/training/tree/master/one-day-geekweek`).
-Mainly build to test a simple CI/CD pipeline with Wercker, targeting Mesosphere DC/OS and Pivotal CloudFoundry.
+Mainly built to test a simple CI/CD pipeline with Wercker, targeting Mesosphere DC/OS and Pivotal CloudFoundry.
 
 ## Simple build & deploy to CloudFoundry
 
